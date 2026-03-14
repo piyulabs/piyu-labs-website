@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piyu Labs · Vision Intelligence</title>
+  <link rel="icon" href="./logo/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Space Grotesk', sans-serif;
+      background: #0A0A0F;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Custom cursor */
+    * {
+      cursor: none;
+    }
+
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #6366f1;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.1s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-follower {
+      width: 40px;
+      height: 40px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.3s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Animated background */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(135deg, #0A0A0F 0%, #1A1A2E 100%);
+    }
+
+    /* Main container */
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 4rem;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 2rem;  
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: slideDown 1s ease;
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-right: auto;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      height: 42px;
+      width: auto;
+      display: block;
+      transition: all 0.2s ease;
+    }
+
+    .logo img:hover {
+      filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
+    }
+
+    nav {
+      display: flex;
+      gap: 3rem;
+      margin: 0 2rem;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #6366f1, #a855f7);
+      transition: width 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-demo {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: white;
+      border: none;
+      padding: 0.6rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.1);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-demo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+    }
+
+    /* Hero section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-logo {
+      margin-bottom: 2rem;
+    }
+
+    .hero-logo-main {
+      font-size: 6rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 1rem;
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+      }
+      to {
+        text-shadow: 0 0 40px rgba(168, 85, 247, 0.5);
+      }
+    }
+
+    .hero-logo-main span {
+      background: linear-gradient(135deg, #ffffff, #a5b4fc, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 3rem;
+      animation: slideUp 1s ease 0.3s both;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-tagline span {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 500;
+    }
+
+    /* Floating elements */
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .float-item {
+      position: absolute;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 50%;
+      filter: blur(40px);
+      animation: float 20s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
+    .float-item:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: -100px;
+      background: rgba(99, 102, 241, 0.15);
+      animation-delay: 0s;
+    }
+
+    .float-item:nth-child(2) {
+      width: 400px;
+      height: 400px;
+      bottom: 10%;
+      right: -100px;
+      background: rgba(168, 85, 247, 0.15);
+      animation-delay: -5s;
+    }
+
+    /* Buttons */
+    .hero-buttons {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      animation: slideUp 1s ease 0.6s both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: white;
+      border: none;
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      transition: left 0.3s;
+      z-index: -1;
+    }
+
+    .btn-primary:hover::before {
+      left: 0;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.2);
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Trusted By Section */
+    .trusted-by {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .trusted-by h3 {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .company-logos {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .company-logos span {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 1.5rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .company-logos span:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Solutions section */
+    .solutions {
+      padding: 6rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s;
+    }
+
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .solution-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 30px;
+      padding: 2.5rem;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s;
+      backdrop-filter: blur(10px);
+    }
+
+    .solution-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .solution-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 30px 50px -20px rgba(99, 102, 241, 0.3);
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .solution-card h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .solution-card p {
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+
+    /* Stats section */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 6rem;
+      padding: 6rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.6s;
+    }
+
+    .stat-item.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .stat-number {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 6rem 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .feature-item i {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .feature-item p {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Demo Request Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: rgba(10, 10, 15, 0.95);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 40px;
+      padding: 3rem;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      animation: modalSlideIn 0.5s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .close-modal:hover {
+      color: white;
+    }
+
+    .modal h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .modal p {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .form-group select {
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: #0A0A0F;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border: none;
+      border-radius: 15px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.5);
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+      padding: 6rem 0;
+    }
+
+    .newsletter-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 60px;
+      padding: 4rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .newsletter-card h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .newsletter-card p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+
+    .newsletter-form button {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .newsletter-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.5);
+    }
+
+    /* Contact section */
+    .contact {
+      text-align: center;
+      padding: 6rem 0;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 60px;
+      padding: 5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      backdrop-filter: blur(10px);
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.6s;
+    }
+
+    .contact-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-card h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .contact-card p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-btn {
+      background: transparent;
+      border: 2px solid #6366f1;
+      color: white;
+      padding: 1.3rem 4rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .contact-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      transition: left 0.3s;
+      z-index: -1;
+    }
+
+    .contact-btn:hover::before {
+      left: 0;
+    }
+
+    .contact-btn:hover {
+      border-color: transparent;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -10px #6366f1;
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col a {
+      display: block;
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      margin-bottom: 0.8rem;
+      transition: all 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.9rem;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1001;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 2rem;
+      }
+      
+      .hero-logo-main {
+        font-size: 4rem;
+      }
+      
+      .hero-tagline {
+        font-size: 1.5rem;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+        border-radius: 40px;
+        padding: 0.75rem 1.2rem;
+      }
+      
+      .logo {
+        margin-right: 0;
+      }
+      
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin: 0.5rem 0 0 0;
+        gap: 1.2rem;
+      }
+      
+      .nav-demo {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.8rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+      
+      .stats {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .contact-card {
+        padding: 3rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Particles background -->
+  <div id="particles-js"></div>
+
+  <!-- Floating elements -->
+  <div class="floating-elements">
+    <div class="float-item"></div>
+    <div class="float-item"></div>
+  </div>
+
+  <!-- Demo Request Modal -->
+  <div class="modal" id="demoModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Request a Demo</h2>
+      <p>See how Piyu Labs can transform your operations with AI vision.</p>
+      
+      <form id="demoForm">
+        <div class="form-group">
+          <input type="text" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Work Email" required>
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Company Name" required>
+        </div>
+        <div class="form-group">
+          <select required>
+            <option value="" disabled selected>Select Solution Interest</option>
+            <option value="anpr">ANPR</option>
+            <option value="people-counting">People Counting</option>
+            <option value="ppe-detection">PPE Detection</option>
+            <option value="defect-detection">Defect Detection</option>
+            <option value="industrial-ai">Industrial AI</option>
+            <option value="custom-vision">Custom Vision</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea rows="3" placeholder="Tell us about your project (optional)"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Schedule Demo</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Thank you! We'll be in touch soon.</div>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img src="./logo/logo_standard1.png" alt="Piyu Labs Logo">
+      </div>
+      
+      <nav>
+        <a href="#solutions">Solutions</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-demo" id="openDemoModal">Request Demo</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-logo">
+        <div class="hero-logo-main">
+          <span>Piyu</span> <span style="font-weight: 300;">Labs</span>
+        </div>
+        <div class="hero-tagline">
+          <span>VISION INTELLIGENCE</span> FOR THE PHYSICAL WORLD
+        </div>
+      </div>
+      
+      <div class="hero-buttons">
+        <button class="btn-primary" id="getStartedBtn">GET STARTED</button>
+        <button class="btn-secondary" id="watchDemoBtn">WATCH DEMO</button>
+      </div>
+    </section>
+
+    <!-- Trusted By -->
+    <div class="trusted-by">
+      <h3>TRUSTED BY INNOVATIVE COMPANIES</h3>
+      <div class="company-logos">
+        <span>TechCorp</span>
+        <span>InnovateLabs</span>
+        <span>Future Systems</span>
+        <span>Global AI</span>
+        <span>Visionary Inc</span>
+      </div>
+    </div>
+
+    <!-- Solutions -->
+    <section id="solutions" class="solutions">
+      <h2 class="section-title">AI <span>Solutions</span></h2>
+      <div class="solutions-grid">
+        <div class="solution-card">
+          <div class="card-icon">🔍</div>
+          <h3>ANPR</h3>
+          <p>Advanced license plate recognition for traffic, security, and parking automation with 99.9% accuracy in real-time.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-icon">👥</div>
+          <h3>People Counting</h3>
+          <p>Real-time analytics for retail, smart buildings, and crowd management. Optimize space utilization and customer experience.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-icon">🛡️</div>
+          <h3>PPE Detection</h3>
+          <p>Safety equipment monitoring for industrial and construction sites. Reduce accidents and ensure compliance automatically.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-icon">🏭</div>
+          <h3>Defect Detection</h3>
+          <p>Automated quality control for manufacturing with 99.9% accuracy. Identify defects in milliseconds.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-icon">⚙️</div>
+          <h3>Industrial AI</h3>
+          <p>Predictive maintenance and process optimization for industry 4.0. Reduce downtime by up to 50%.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-icon">🎯</div>
+          <h3>Custom Vision</h3>
+          <p>Tailored computer vision models for enterprise applications. Built specifically for your use case.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">99.9%</div>
+        <div class="stat-label">Accuracy</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">15ms</div>
+        <div class="stat-label">Latency</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Reliability</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Deployments</div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <section id="features" class="features">
+      <h2 class="section-title">Why Choose <span>Piyu Labs</span></h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-bolt"></i>
+          <h4>Real-time Processing</h4>
+          <p>Process video streams in milliseconds with our optimized edge AI architecture</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-shield-alt"></i>
+          <h4>Enterprise Security</h4>
+          <p>Bank-level encryption and compliance with GDPR, SOC2, and ISO 27001</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <h4>Cloud & Edge</h4>
+          <p>Deploy anywhere - cloud, on-premise, or edge devices with minimal footprint</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-chart-line"></i>
+          <h4>Advanced Analytics</h4>
+          <p>Comprehensive dashboards and insights to drive business decisions</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-code-branch"></i>
+          <h4>Easy Integration</h4>
+          <p>RESTful APIs and SDKs for seamless integration with your existing systems</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-headset"></i>
+          <h4>24/7 Support</h4>
+          <p>Dedicated support team and enterprise-grade SLA guaranteed</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <div class="newsletter-card">
+        <h2>Stay Updated</h2>
+        <p>Get the latest news, updates, and insights from Piyu Labs</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <div class="contact-card">
+        <h2>Contact Us</h2>
+        <p>Ready to transform your operations with AI vision?</p>
+        <button class="contact-btn" id="contactBtn">CONTACT PIYU LABS</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-col">
+          <h4>Piyu Labs</h4>
+          <a href="#solutions">Solutions</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <a href="#">ANPR</a>
+          <a href="#">People Counting</a>
+          <a href="#">PPE Detection</a>
+          <a href="#">Defect Detection</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Documentation</a>
+          <a href="#">API Reference</a>
+          <a href="#">Case Studies</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+          <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">hello@piyulabs.ai</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Piyu Labs. All rights reserved. Vision Intelligence for the Physical World.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Particles.js script -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Custom cursor
+    const cursor = document.querySelector('.cursor');
+    const follower = document.querySelector('.cursor-follower');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      
+      setTimeout(() => {
+        follower.style.left = e.clientX + 'px';
+        follower.style.top = e.clientY + 'px';
+      }, 50);
+    });
+
+    // Particles.js background
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#6366f1' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.2, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: '#6366f1', opacity: 0.1, width: 1 },
+        move: { enable: true, speed: 1, direction: 'none', random: true, straight: false }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'repulse' } }
+      }
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-title, .solution-card, .stat-item, .contact-card, .feature-item').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('demoModal');
+    const openModalBtns = document.querySelectorAll('#openDemoModal, #getStartedBtn, #contactBtn');
+    const closeModal = document.querySelector('.close-modal');
+    const toast = document.getElementById('toast');
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    openModalBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.add('active');
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Form submissions
+    document.getElementById('demoForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      modal.classList.remove('active');
+      showToast('Thank you! We\'ll be in touch soon to schedule your demo.');
+      e.target.reset();
+    });
+
+    document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast('Thanks for subscribing! Check your inbox for updates.');
+      e.target.reset();
+    });
+
+    // Watch demo button
+    document.getElementById('watchDemoBtn').addEventListener('click', () => {
+      showToast('Demo video will be available soon!');
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
