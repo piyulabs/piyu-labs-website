@@ -1142,3 +1142,226 @@ footer {
   transform: translateY(0);
   opacity: 1;
 }
+
+/* ===== SOLUTION PAGES COMMON STYLES ===== */
+.solution-page { 
+  padding: 2rem 1rem 4rem; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
+
+@media (min-width: 768px) {
+  .solution-page { 
+    padding: 4rem 2rem; 
+  }
+}
+
+.solution-header { 
+  text-align: center; 
+  margin-bottom: 2rem; 
+}
+
+.solution-header h1 { 
+  font-size: 2.5rem; 
+  margin-bottom: 1rem; 
+  background: linear-gradient(135deg, #6366f1, #a855f7); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+
+@media (min-width: 768px) {
+  .solution-header h1 { 
+    font-size: 3.5rem; 
+  }
+}
+
+.demo-image-container { 
+  width: 100%; 
+  border-radius: 30px; 
+  overflow: hidden; 
+  margin: 2rem 0; 
+  border: 1px solid rgba(255,255,255,0.1); 
+  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); 
+  background: #1a1a2e;
+}
+
+.demo-placeholder {
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: rgba(255,255,255,0.8);
+}
+
+.demo-placeholder i {
+  font-size: 5rem;
+  color: #6366f1;
+  margin-bottom: 1rem;
+}
+
+.back-button { 
+  display: inline-block; 
+  margin: 1rem 0 2rem; 
+  padding: 0.8rem 2rem; 
+  background: rgba(255,255,255,0.05); 
+  border: 1px solid rgba(255,255,255,0.1); 
+  border-radius: 50px; 
+  color: white; 
+  text-decoration: none; 
+  transition: all 0.3s; 
+}
+
+.back-button:hover { 
+  background: rgba(99,102,241,0.2); 
+  border-color: #6366f1; 
+}
+
+.feature-list { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 1.5rem; 
+  margin: 3rem 0; 
+}
+
+@media (min-width: 768px) { 
+  .feature-list { 
+    grid-template-columns: repeat(3,1fr); 
+    gap: 2rem; 
+  } 
+}
+
+.feature-item {
+  background: rgba(255,255,255,0.02);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.feature-item i {
+  font-size: 2.5rem;
+  color: #6366f1;
+  margin-bottom: 1rem;
+}
+
+/* Manufacturing page specific */
+.problem-highlight {
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 4px solid #ef4444;
+  padding: 2rem;
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+
+/* Security page specific */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.benefit-item {
+  background: rgba(255,255,255,0.02);
+  padding: 1.5rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.benefit-item i {
+  font-size: 2rem;
+  color: #10b981;
+}
+
+/* Custom page specific */
+.process-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+@media (min-width: 768px) {
+  .process-steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.step {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 20px;
+  position: relative;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin: 0 auto 1rem;
+}
+
+.use-case-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .use-case-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.use-case {
+  background: rgba(255,255,255,0.02);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.use-case:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateY(-5px);
+}
+
+.use-case i {
+  font-size: 2.5rem;
+  color: #6366f1;
+  margin-bottom: 1rem;
+}
+
+/* Industry tags */
+.industry-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.industry-tag {
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: #a5b4fc;
+}

@@ -7,6 +7,51 @@
   <link rel="icon" href="./logo/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles for clickable cards */
+    .solution-card {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+    }
+    
+    .solution-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 30px 50px -20px rgba(99, 102, 241, 0.3);
+    }
+    
+    .solution-card:active {
+      transform: translateY(-5px) scale(1.01);
+    }
+    
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 0.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .solutions-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #a5b4fc;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 <body>
   <!-- Custom cursor elements -->
@@ -27,19 +72,9 @@
       <h2>Request a Demo</h2>
       <p>See how Piyu Labs can transform your operations with AI vision.</p>
       
-      <!-- FIXED FORM - Removed _replyto field -->
       <form action="https://formspree.io/f/meervzdy" method="POST">
-  
-        <!-- Hidden fields - FIXED -->
         <input type="hidden" name="_subject" value="New Demo Request from Piyu Labs Website">
-        
-        <!-- REMOVED: <input type="hidden" name="_replyto" value="[[email]]"> -->
-        <!-- Formspree automatically uses the 'email' field for replies -->
-        
-        <!-- Spam protection -->
         <input type="text" name="_gotcha" style="display:none">
-        
-        <!-- Optional: redirect back to your site after submission -->
         <input type="hidden" name="_next" value="https://piyu-labs-website.vercel.app/?success=true">
         
         <div class="form-group">
@@ -54,12 +89,9 @@
         <div class="form-group">
           <select name="solution" required>
             <option value="" disabled selected>Select Solution Interest</option>
-            <option value="ANPR">ANPR</option>
-            <option value="People Counting">People Counting</option>
-            <option value="PPE Detection">PPE Detection</option>
-            <option value="Defect Detection">Defect Detection</option>
-            <option value="Industrial AI">Industrial AI</option>
-            <option value="Custom Vision">Custom Vision</option>
+            <option value="Production Quality Intelligence">Production Quality Intelligence</option>
+            <option value="Smart Perimeter Security">Smart Perimeter Security</option>
+            <option value="Custom Vision Solutions">Custom Vision Solutions</option>
           </select>
         </div>
         <div class="form-group">
@@ -111,40 +143,49 @@
       </div>
     </div>
 
-    <!-- Solutions -->
+    <!-- Solutions - Now with 3 solution cards -->
     <section id="solutions" class="solutions">
-      <h2 class="section-title">AI <span>Solutions</span></h2>
+      <h2 class="section-title">Intelligent <span>Vision Solutions</span></h2>
       <div class="solutions-grid">
-        <div class="solution-card">
-          <div class="card-icon">🔍</div>
-          <h3>ANPR</h3>
-          <p>Advanced license plate recognition with 99.9% accuracy in real-time.</p>
-        </div>
-        <div class="solution-card">
-          <div class="card-icon">👥</div>
-          <h3>People Counting</h3>
-          <p>Real-time analytics for retail and smart buildings. Optimize space utilization.</p>
-        </div>
-        <div class="solution-card">
-          <div class="card-icon">🛡️</div>
-          <h3>PPE Detection</h3>
-          <p>Safety equipment monitoring for industrial and construction sites.</p>
-        </div>
-        <div class="solution-card">
+        
+        <!-- 1. Manufacturing Solution -->
+        <a href="solutions/manufacturing.html" class="solution-card">
           <div class="card-icon">🏭</div>
-          <h3>Defect Detection</h3>
-          <p>Automated quality control for manufacturing with 99.9% accuracy.</p>
-        </div>
-        <div class="solution-card">
-          <div class="card-icon">⚙️</div>
-          <h3>Industrial AI</h3>
-          <p>Predictive maintenance and process optimization for Industry 4.0.</p>
-        </div>
-        <div class="solution-card">
+          <h3>Production Quality Intelligence</h3>
+          <div style="margin-bottom: 1rem;">
+            <span class="tag">Missing Label</span>
+            <span class="tag">Defect Detection</span>
+            <span class="tag">Print Errors</span>
+          </div>
+          <p>Automated quality control that detects missing labels, incorrect printing, and manufacturing defects in real-time. Perfect for pharmaceutical, food, and electronics industries.</p>
+          <div style="margin-top: 1.5rem; color: #6366f1; font-weight: 600;">Learn more →</div>
+        </a>
+        
+        <!-- 2. Access Control / Security Solution -->
+        <a href="solutions/security.html" class="solution-card">
+          <div class="card-icon">🚗</div>
+          <h3>Smart Perimeter Security</h3>
+          <div style="margin-bottom: 1rem;">
+            <span class="tag">Vehicle Tracking</span>
+            <span class="tag">Visitor Management</span>
+            <span class="tag">Gate Automation</span>
+          </div>
+          <p>Complete access control for gated communities, residential colonies, and office parks. Automatically track every vehicle, manage visitors, and enhance security without manual logs.</p>
+          <div style="margin-top: 1.5rem; color: #6366f1; font-weight: 600;">Learn more →</div>
+        </a>
+        
+        <!-- 3. Custom Vision Solution -->
+        <a href="solutions/custom.html" class="solution-card">
           <div class="card-icon">🎯</div>
-          <h3>Custom Vision</h3>
-          <p>Tailored computer vision models for enterprise applications.</p>
-        </div>
+          <h3>Custom Vision Solutions</h3>
+          <div style="margin-bottom: 1rem;">
+            <span class="tag">Tailored AI</span>
+            <span class="tag">Unique Use Cases</span>
+            <span class="tag">Rapid Prototyping</span>
+          </div>
+          <p>Have a unique problem? We build custom computer vision solutions for your specific needs. From retail analytics to logistics tracking, we create what you need.</p>
+          <div style="margin-top: 1.5rem; color: #6366f1; font-weight: 600;">Learn more →</div>
+        </a>
       </div>
     </section>
 
@@ -206,16 +247,13 @@
     </section>
 
     <!-- Newsletter -->
-    <!-- Newsletter Section - FIXED -->
     <section class="newsletter">
       <div class="newsletter-card">
         <h2>Stay Updated</h2>
         <p>Get the latest news, updates, and insights from Piyu Labs</p>
         
-        <!-- FIXED Newsletter Form - Removed _replyto -->
         <form class="newsletter-form" action="https://formspree.io/f/meervzdy" method="POST">
           <input type="hidden" name="_subject" value="New Newsletter Subscriber">
-          <!-- REMOVED: <input type="hidden" name="_replyto" value="[[email]]"> -->
           <input type="text" name="_gotcha" style="display:none">
           <input type="hidden" name="_next" value="https://piyu-labs-website.vercel.app/?subscribed=true">
           
@@ -245,10 +283,9 @@
         </div>
         <div class="footer-col">
           <h4>Solutions</h4>
-          <a href="#">ANPR</a>
-          <a href="#">People Counting</a>
-          <a href="#">PPE Detection</a>
-          <a href="#">Defect Detection</a>
+          <a href="solutions/manufacturing.html">Production Quality</a>
+          <a href="solutions/security.html">Perimeter Security</a>
+          <a href="solutions/custom.html">Custom Vision</a>
         </div>
         <div class="footer-col">
           <h4>Resources</h4>

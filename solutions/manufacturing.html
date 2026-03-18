@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production Quality Intelligence · Piyu Labs</title>
+  <link rel="icon" href="../logo/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Custom cursor elements - FIXED: Added these -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Background -->
+  <div id="particles-js"></div>
+  
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Thank you! We'll be in touch soon.</div>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img src="../logo/logo_standard1.png" alt="Piyu Labs Logo" id="companyLogo">
+      </div>
+      <nav>
+        <a href="../index.html#solutions">Solutions</a>
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <button class="nav-demo" id="openDemoModal">Request Demo</button>
+    </header>
+    
+    <!-- Back Link -->
+    <a href="../index.html#solutions" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Solutions
+    </a>
+    
+    <div class="solution-page">
+      <!-- Header -->
+      <div class="solution-header">
+        <h1>Production Quality Intelligence</h1>
+        <p style="font-size: 1.2rem; color: rgba(255,255,255,0.9);">Never miss a defective product again</p>
+      </div>
+      
+      <!-- Demo Image -->
+      <div class="demo-image-container">
+        <div class="demo-placeholder">
+          <i class="fas fa-microchip"></i>
+          <h3>Production Line Quality Control Dashboard</h3>
+          <p style="color: rgba(255,255,255,0.6);">Real-time defect detection & label verification</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.5); padding: 1rem; text-align: center; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+          Live demonstration of missing label detection on production line
+        </div>
+      </div>
+      
+      <!-- The Problem - Missing Label Detection -->
+      <div class="problem-highlight">
+        <h3 style="color: #ef4444; margin-bottom: 1rem;">⚠️ The #1 Problem: Missing & Incorrect Labels</h3>
+        <p style="font-size: 1.1rem; line-height: 1.6;">Almost every factory faces this issue daily. Missing labels, wrong labels, tilted labels, or printing defects on products cost companies millions in recalls and brand reputation damage. Manual inspection catches only 80% of defects.</p>
+      </div>
+      
+      <!-- Key Features -->
+      <h2 style="font-size: 2rem; margin: 3rem 0 1rem; background: linear-gradient(135deg, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Key Features</h2>
+      
+      <div class="feature-list">
+        <div class="feature-item">
+          <i class="fas fa-tag"></i>
+          <h4>Missing Label Detection</h4>
+          <p>Instantly identify products missing labels or with incorrect labeling. Works on pharmaceutical strips, food packaging, and industrial labels.</p>
+        </div>
+        
+        <div class="feature-item">
+          <i class="fas fa-print"></i>
+          <h4>Print Error Detection</h4>
+          <p>Catch blurry, smudged, misaligned, or faded printing in real-time. Ensures batch numbers, expiry dates, and barcodes are always readable.</p>
+        </div>
+        
+        <div class="feature-item">
+          <i class="fas fa-cogs"></i>
+          <h4>Defect Classification</h4>
+          <p>Categorize defects automatically for quality reporting. Track trends and identify recurring issues in your production line.</p>
+        </div>
+      </div>
+      
+      <!-- Stats -->
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 3rem 0; text-align: center;">
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">99.9%</div>
+          <div style="color: rgba(255,255,255,0.6);">Detection Accuracy</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">50ms</div>
+          <div style="color: rgba(255,255,255,0.6);">Inspection Time</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">24/7</div>
+          <div style="color: rgba(255,255,255,0.6);">Continuous Operation</div>
+        </div>
+      </div>
+      
+      <!-- Industries -->
+      <div style="text-align: center; margin: 3rem 0;">
+        <h3 style="margin-bottom: 1rem;">Perfect for</h3>
+        <div class="industry-tags">
+          <span class="industry-tag">Pharmaceutical</span>
+          <span class="industry-tag">Food & Beverage</span>
+          <span class="industry-tag">Electronics</span>
+          <span class="industry-tag">Automotive</span>
+          <span class="industry-tag">Packaging</span>
+        </div>
+      </div>
+      
+      <!-- CTA -->
+      <div style="text-align: center; margin: 4rem 0 2rem;">
+        <h3 style="font-size: 2rem; margin-bottom: 2rem;">Ready to eliminate defective products?</h3>
+        <button class="btn-primary" onclick="document.getElementById('openDemoModal').click()" style="padding: 1.2rem 3rem;">Request Demo</button>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer style="margin-top: 4rem;">
+      <div class="footer-bottom">
+        <p>© 2026 Piyu Labs. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Demo Modal -->
+  <div class="modal" id="demoModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Request a Demo</h2>
+      <p>See how Piyu Labs can transform your operations with AI vision.</p>
+      
+      <form action="https://formspree.io/f/meervzdy" method="POST">
+        <input type="hidden" name="_subject" value="New Demo Request from Piyu Labs Website">
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_next" value="https://piyu-labs-website.vercel.app/?success=true">
+        
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Work Email" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="company" placeholder="Company Name" required>
+        </div>
+        <div class="form-group">
+          <select name="solution" required>
+            <option value="" disabled selected>Select Solution Interest</option>
+            <option value="Production Quality Intelligence">Production Quality Intelligence</option>
+            <option value="Smart Perimeter Security">Smart Perimeter Security</option>
+            <option value="Custom Vision Solutions">Custom Vision Solutions</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea name="message" rows="3" placeholder="Tell us about your project (optional)"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Schedule Demo</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="../script.js"></script>
+</body>
+</html>

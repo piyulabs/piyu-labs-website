@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Vision Solutions · Piyu Labs</title>
+  <link rel="icon" href="../logo/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Custom cursor elements - FIXED: Added these -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Background -->
+  <div id="particles-js"></div>
+  
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Thank you! We'll be in touch soon.</div>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img src="../logo/logo_standard1.png" alt="Piyu Labs Logo" id="companyLogo">
+      </div>
+      <nav>
+        <a href="../index.html#solutions">Solutions</a>
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <button class="nav-demo" id="openDemoModal">Request Demo</button>
+    </header>
+    
+    <!-- Back Link -->
+    <a href="../index.html#solutions" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Solutions
+    </a>
+    
+    <div class="solution-page">
+      <!-- Header -->
+      <div class="solution-header">
+        <h1>Custom Vision Solutions</h1>
+        <p style="font-size: 1.2rem; color: rgba(255,255,255,0.9);">Tailored AI for your unique business challenges</p>
+      </div>
+      
+      <!-- Demo Image -->
+      <div class="demo-image-container">
+        <div class="demo-placeholder">
+          <i class="fas fa-puzzle-piece"></i>
+          <h3>Build Your Custom Solution</h3>
+          <p style="color: rgba(255,255,255,0.6);">From concept to deployment in weeks</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.5); padding: 1rem; text-align: center; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
+          We build exactly what you need
+        </div>
+      </div>
+      
+      <!-- The Problem -->
+      <h2 style="font-size: 2rem; margin: 3rem 0 1rem; background: linear-gradient(135deg, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Not all problems have off-the-shelf solutions</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.8); margin-bottom: 2rem;">
+        Every business has unique challenges that generic software can't solve. Whether it's counting specific items in your warehouse, 
+        monitoring unusual activity, or tracking custom objects – we build computer vision solutions tailored to your exact needs.
+      </p>
+      
+      <!-- Process -->
+      <h2 style="font-size: 2rem; margin: 3rem 0 1rem; background: linear-gradient(135deg, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Process</h2>
+      
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h4>Discovery</h4>
+          <p style="color: rgba(255,255,255,0.6);">We understand your problem and requirements</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h4>Prototype</h4>
+          <p style="color: rgba(255,255,255,0.6);">Build a working prototype in 2-3 weeks</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h4>Development</h4>
+          <p style="color: rgba(255,255,255,0.6);">Full solution development with your feedback</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h4>Deployment</h4>
+          <p style="color: rgba(255,255,255,0.6);">Deploy on-premise or cloud with training</p>
+        </div>
+      </div>
+      
+      <!-- Use Cases -->
+      <h2 style="font-size: 2rem; margin: 3rem 0 1rem; background: linear-gradient(135deg, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Example Use Cases</h2>
+      
+      <div class="use-case-grid">
+        <div class="use-case">
+          <i class="fas fa-boxes"></i>
+          <h4>Warehouse Inventory</h4>
+          <p style="color: rgba(255,255,255,0.6);">Count specific items, track stock levels automatically</p>
+        </div>
+        <div class="use-case">
+          <i class="fas fa-utensils"></i>
+          <h4>Restaurant Analytics</h4>
+          <p style="color: rgba(255,255,255,0.6);">Track table turnover, customer wait times</p>
+        </div>
+        <div class="use-case">
+          <i class="fas fa-dog"></i>
+          <h4>Pet Monitoring</h4>
+          <p style="color: rgba(255,255,255,0.6);">Track animal behavior in shelters or farms</p>
+        </div>
+        <div class="use-case">
+          <i class="fas fa-leaf"></i>
+          <h4>Agriculture</h4>
+          <p style="color: rgba(255,255,255,0.6);">Monitor crop health, count fruits/vegetables</p>
+        </div>
+        <div class="use-case">
+          <i class="fas fa-train"></i>
+          <h4>Transportation</h4>
+          <p style="color: rgba(255,255,255,0.6);">Track specific vehicle types, count passengers</p>
+        </div>
+        <div class="use-case">
+          <i class="fas fa-flask"></i>
+          <h4>Laboratory</h4>
+          <p style="color: rgba(255,255,255,0.6);">Monitor experiments, track sample movements</p>
+        </div>
+      </div>
+      
+      <!-- CTA -->
+      <div style="text-align: center; margin: 4rem 0 2rem;">
+        <h3 style="font-size: 2rem; margin-bottom: 2rem;">Have a unique problem? Let's build together</h3>
+        <button class="btn-primary" onclick="document.getElementById('openDemoModal').click()" style="padding: 1.2rem 3rem;">Discuss Your Project</button>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer style="margin-top: 4rem;">
+      <div class="footer-bottom">
+        <p>© 2026 Piyu Labs. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Demo Modal -->
+  <div class="modal" id="demoModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Request a Demo</h2>
+      <p>See how Piyu Labs can transform your operations with AI vision.</p>
+      
+      <form action="https://formspree.io/f/meervzdy" method="POST">
+        <input type="hidden" name="_subject" value="New Demo Request from Piyu Labs Website">
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_next" value="https://piyu-labs-website.vercel.app/?success=true">
+        
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Work Email" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="company" placeholder="Company Name" required>
+        </div>
+        <div class="form-group">
+          <select name="solution" required>
+            <option value="" disabled selected>Select Solution Interest</option>
+            <option value="Production Quality Intelligence">Production Quality Intelligence</option>
+            <option value="Smart Perimeter Security">Smart Perimeter Security</option>
+            <option value="Custom Vision Solutions">Custom Vision Solutions</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea name="message" rows="3" placeholder="Tell us about your project (optional)"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Schedule Demo</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="../script.js"></script>
+</body>
+</html>

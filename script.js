@@ -13,22 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Check if returning from Formspree success
-    if (document.referrer.includes('formspree.io')) {
-        const modal = document.getElementById('demoModal');
-        if (modal) modal.classList.remove('active');
-        showToast('Thank you! We\'ll be in touch soon to schedule your demo.');
-    }
-    
-    // Check for newsletter success hash
-    if (window.location.hash === '#newsletter-success') {
-        showToast('Thanks for subscribing! Check your inbox for updates.');
-        // Remove hash from URL
-        history.replaceState(null, null, ' ');
-    }
-
     // Initialize particles.js
-    if (typeof particlesJS !== 'undefined') {
+    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             particles: {
                 number: { value: 50, density: { enable: true, value_area: 800 } },
@@ -58,6 +44,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+    }
+
+    // Check if returning from Formspree success
+    if (document.referrer.includes('formspree.io')) {
+        const modal = document.getElementById('demoModal');
+        if (modal) modal.classList.remove('active');
+        showToast('Thank you! We\'ll be in touch soon to schedule your demo.');
+    }
+    
+    // Check for newsletter success hash
+    if (window.location.hash === '#newsletter-success') {
+        showToast('Thanks for subscribing! Check your inbox for updates.');
+        history.replaceState(null, null, ' ');
     }
 
     // Custom cursor functionality (desktop only)
@@ -103,39 +102,40 @@ document.addEventListener('DOMContentLoaded', function() {
         window.requestAnimationFrame(step);
     }
 
-    // Stats observer with counters
+    // Stats observer with counters (only on pages with stats)
     const statItems = document.querySelectorAll('.stat-item');
-    
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                if (entry.target.classList.contains('stat-item')) {
-                    const stat1 = document.getElementById('stat1');
-                    const stat2 = document.getElementById('stat2');
-                    const stat3 = document.getElementById('stat3');
-                    const stat4 = document.getElementById('stat4');
+    if (statItems.length > 0) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                     
-                    if (stat1 && stat2 && stat3 && stat4) {
-                        stat1.textContent = '0';
-                        stat2.textContent = '0';
-                        stat3.textContent = '0';
-                        stat4.textContent = '0';
+                    if (entry.target.classList.contains('stat-item')) {
+                        const stat1 = document.getElementById('stat1');
+                        const stat2 = document.getElementById('stat2');
+                        const stat3 = document.getElementById('stat3');
+                        const stat4 = document.getElementById('stat4');
                         
-                        setTimeout(() => {
-                            animateCounter(stat1, 0, 99.9, 2000, true);
-                            animateCounter(stat2, 0, 15, 2000, false);
-                            animateCounter(stat3, 0, 24, 2000, false);
-                            animateCounter(stat4, 0, 500, 2000, false);
-                        }, 300);
+                        if (stat1 && stat2 && stat3 && stat4) {
+                            stat1.textContent = '0';
+                            stat2.textContent = '0';
+                            stat3.textContent = '0';
+                            stat4.textContent = '0';
+                            
+                            setTimeout(() => {
+                                animateCounter(stat1, 0, 99.9, 2000, true);
+                                animateCounter(stat2, 0, 15, 2000, false);
+                                animateCounter(stat3, 0, 24, 2000, false);
+                                animateCounter(stat4, 0, 500, 2000, false);
+                            }, 300);
+                        }
                     }
                 }
-            }
-        });
-    }, { threshold: 0.3 });
+            });
+        }, { threshold: 0.3 });
 
-    statItems.forEach(item => statsObserver.observe(item));
+        statItems.forEach(item => statsObserver.observe(item));
+    }
 
     // Regular intersection observer for other elements
     const observer = new IntersectionObserver((entries) => {
@@ -191,6 +191,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Form submissions - handle all forms on all pages
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        // Only add if not already handled by Formspree (forms with action attribute)
+        if (!form.hasAttribute('action')) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (modal) modal.classList.remove('active');
+                showToast('Thank you! We\'ll be in touch soon.');
+                e.target.reset();
+            });
+        }
+    });
+
     // Watch demo button
     const watchDemoBtn = document.getElementById('watchDemoBtn');
     if (watchDemoBtn) {
@@ -205,12 +219,17 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const targetId = link.getAttribute('href');
             if (targetId && targetId !== '#') {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                // Check if it's a same-page anchor or different page
+                if (targetId.includes('.html')) {
+                    window.location.href = targetId;
+                } else {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             }
         });
