@@ -7,9 +7,30 @@
   <link rel="icon" href="../logo/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .demo-image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    
+    .demo-image-container img:hover {
+      transform: scale(1.02);
+    }
+    
+    .image-caption {
+      background: rgba(0,0,0,0.7);
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
 </head>
 <body>
-  <!-- Custom cursor elements - FIXED: Added these -->
+  <!-- Custom cursor elements -->
   <div class="cursor"></div>
   <div class="cursor-follower"></div>
 
@@ -45,15 +66,11 @@
         <p style="font-size: 1.2rem; color: rgba(255,255,255,0.9);">Tailored AI for your unique business challenges</p>
       </div>
       
-      <!-- Demo Image -->
+      <!-- Demo Image - NOW USING ACTUAL JPG -->
       <div class="demo-image-container">
-        <div class="demo-placeholder">
-          <i class="fas fa-puzzle-piece"></i>
-          <h3>Build Your Custom Solution</h3>
-          <p style="color: rgba(255,255,255,0.6);">From concept to deployment in weeks</p>
-        </div>
-        <div style="background: rgba(0,0,0,0.5); padding: 1rem; text-align: center; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
-          We build exactly what you need
+        <img src="../images/custom.png" alt="Custom Vision Solutions Dashboard" onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x600/1a1a2e/6366f1?text=Custom+Vision+Solutions'">
+        <div class="image-caption">
+          <i class="fas fa-puzzle-piece"></i> We build exactly what you need - from concept to deployment
         </div>
       </div>
       

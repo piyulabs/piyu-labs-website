@@ -7,9 +7,31 @@
   <link rel="icon" href="../logo/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Additional style for images */
+    .demo-image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    
+    .demo-image-container img:hover {
+      transform: scale(1.02);
+    }
+    
+    .image-caption {
+      background: rgba(0,0,0,0.7);
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
 </head>
 <body>
-  <!-- Custom cursor elements - FIXED: Added these -->
+  <!-- Custom cursor elements -->
   <div class="cursor"></div>
   <div class="cursor-follower"></div>
 
@@ -45,15 +67,11 @@
         <p style="font-size: 1.2rem; color: rgba(255,255,255,0.9);">Never miss a defective product again</p>
       </div>
       
-      <!-- Demo Image -->
+      <!-- Demo Image - NOW USING ACTUAL JPG -->
       <div class="demo-image-container">
-        <div class="demo-placeholder">
-          <i class="fas fa-microchip"></i>
-          <h3>Production Line Quality Control Dashboard</h3>
-          <p style="color: rgba(255,255,255,0.6);">Real-time defect detection & label verification</p>
-        </div>
-        <div style="background: rgba(0,0,0,0.5); padding: 1rem; text-align: center; font-size: 0.9rem; color: rgba(255,255,255,0.6);">
-          Live demonstration of missing label detection on production line
+        <img src="../images/manufacturing.png" alt="Production Quality Intelligence Dashboard" onerror="this.onerror=null; this.src='https://via.placeholder.com/1200x600/1a1a2e/6366f1?text=Production+Quality+Intelligence'">
+        <div class="image-caption">
+          <i class="fas fa-eye"></i> Real-time defect detection & label verification on production line
         </div>
       </div>
       
